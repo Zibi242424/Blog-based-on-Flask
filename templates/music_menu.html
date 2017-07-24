@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>
+    Zbigniew Mansel's Website
+</title>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="..\static\button.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ css }}">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    .img-menu {
+        max-width: 400px;
+        max-height: 400px;
+    }
+    a:visited#elo{
+        color: black;
+    }
+    </style>
+</head>
+<!-- w w w  . jav a 2 s.co  m-->
+
+
+
+
+
+<body style="background-color:#693D25">
+<div class="jumbotron" style="background-color: darkgreen" style="margin: 0% 5% 0% 5%">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="container">
+                <h1 class="display-3" style="color: white">Music reviews</h1>
+                <h2 class="display-2" style="color: white" style="font-family: Century Gothic">
+                        Here You will find my opinions on certain albums.</h2>
+                <h3 style="color: gray">Date: {{ date }}</h3>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="jumbotron" style="background-color: transparent; margin: 0% 5% 0% 5%">
+<div class="container-fluid">
+    <div class="row">    
+         <nav>
+            <ul>
+                <li><a href="/" class="btn btn-mine btn-lg" style="width: 150px">Home</a></li>
+                <li>
+                    <p></p>
+                </li>
+                <li><a href="music_menu" class="btn btn-mine btn-lg" style="width: 150px">Music</a></li>
+                    <p></p>
+                <li><a href="about.html" class="btn btn-mine btn-lg" style="width: 150px">About</a></li>
+            </ul>
+        </nav>            
+        <article>          
+            <p>
+                <b><font size="5">Music reviews: </font></b><br>
+                {% for review in reviews %}
+                <a id="elo" href="/music/?artist={{ review.artist_link }}&album={{ review.album_link }}">{{ review.artist }} - {{ review.album }}</a><font color="grey"> {{ review.language }}</font><br>
+                {% endfor %}
+                
+            </p>
+            <div class="row">
+                <div class="col-xs-12"><center>
+                {% for x in buttons %}
+                <a href="music_menu?page={{ x }}" class="btn btn-mine btn-lg">{{ x }}</a>
+                {% endfor %}
+                </center></div>
+            </div>        
+        </article>           
+           
+    </div>
+</div>
+</div>
+
+</body>
+
+</html>

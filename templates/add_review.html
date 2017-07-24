@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>
+    Zbigniew Mansel's Website
+</title>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="..\static\button.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ css }}">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+ 
+    #note {
+    width:100%;
+    direction:rtl;
+    display:block;
+    max-width:100%;
+    line-height:1.5;
+    padding:15px 15px 30px;
+    border-radius:3px;
+    border:1px solid #F7E98D;
+    font:13px Tahoma, cursive;
+    transition:box-shadow 0.5s ease;
+    box-shadow:0 4px 6px rgba(0,0,0,0.1);
+    font-smoothing:subpixel-antialiased;
+    background:linear-gradient(#F9EFAF, #F7E98D);
+    background:-o-linear-gradient(#F9EFAF, #F7E98D);
+    background:-ms-linear-gradient(#F9EFAF, #F7E98D);
+    background:-moz-linear-gradient(#F9EFAF, #F7E98D);
+    background:-webkit-linear-gradient(#F9EFAF, #F7E98D);
+    }
+    </style>
+</head>
+
+
+<body>
+    <h1>Adding review</h1>
+    <form method='POST' action="/add_review">    
+    <input type="text" name="artist" placeholder="Artist/Band name"></input><br>
+    <input type="text" name="album" placeholder="Album name"></input><br>
+    <input type="text" name="cover" placeholder="URL for cover"></input><br>    
+    <textarea name="header" placeholder="Header for the review"></textarea><br>
+    <textarea name="review" placeholder="Text review">p1 /p1  p2 /p2  p3 /p3  p4 /p4  p5 /p5  p6 /p6</textarea><br>
+    <input type="text" name="rate" placeholder="Rate of the album"></input><br>
+    <input type="text" name="listen" placeholder="URL for audio material"></input><br><br>
+    <b>Language of the review:</b><br>
+    <input type="radio" name="language" value="PL" checked>PL<br>
+    <input type="radio" name="language" value="ENG">ENG<br>
+    <button type="submit">Submit</button><br>
+    </form>
+
+<p><h3>Instrukcja: </h3></p>
+<ul>
+    <li>Paragrafy (maksymalnie 6) wydziela się umieszając je pomiędzy symbolami</li>
+    <i>pNr</i> oraz <i>/pNr</i>. <br>Przykładowo dla paragrafu 3:  p3TEXT_TEXT_TEXT/p3
+    <li>Należy unikać znaków specjalnych takich jak <i>&, ?, !</i> w nazwie artysty i tytule albumu<br>
+    bo przeglądarka może mięć problem z roszyfrowaniem linku. & zastępować słowem <i>and</i>, resztę znaków 
+    lepiej unikać</li>
+</ul>
+<a href="/"><button>Home</button></a>
+</body>

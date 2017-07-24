@@ -1,0 +1,146 @@
+     .btn-mine { 
+  color: #FFFFFF; 
+  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+  background-color: #22700E; 
+  border-color: #000000; 
+} 
+ 
+.btn-mine:hover, 
+.btn-mine:focus, 
+.btn-mine:active, 
+.btn-mine.active, 
+.open .dropdown-toggle.btn-mine { 
+  color: #FFFFFF; 
+  background-color: #693D25; 
+  border-color: #000000; 
+} 
+ 
+.btn-mine:active, 
+.btn-mine.active, 
+.open .dropdown-toggle.btn-mine { 
+  background-image: none; 
+} 
+ 
+.btn-mine.disabled, 
+.btn-mine[disabled], 
+fieldset[disabled] .btn-mine, 
+.btn-mine.disabled:hover, 
+.btn-mine[disabled]:hover, 
+fieldset[disabled] .btn-mine:hover, 
+.btn-mine.disabled:focus, 
+.btn-mine[disabled]:focus, 
+fieldset[disabled] .btn-mine:focus, 
+.btn-mine.disabled:active, 
+.btn-mine[disabled]:active, 
+fieldset[disabled] .btn-mine:active, 
+.btn-mine.disabled.active, 
+.btn-mine[disabled].active, 
+fieldset[disabled] .btn-mine.active { 
+  background-color: #22700E; 
+  border-color: #000000; 
+} 
+ 
+.btn-mine .badge { 
+  color: #22700E; 
+  background-color: #FFFFFF; 
+}
+
+nav {
+    float: left;
+    max-width: auto;
+    margin-left: 0%;
+    margin-right: 2%;
+    padding: 0em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul a {
+    text-decoration: none;
+}
+
+article {
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+    font-size: 4;
+    margin: 0% 0% 0% 2%;
+    background-color: white;            
+    padding: 1em;
+    overflow: hidden;
+    border-radius: 25px 25px;
+    margin-right: 0px;
+    width: auto;
+    align-items: center;
+}
+#subtitle-review {
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: justify;
+    
+
+}
+#text-review {
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+    text-align: justify;
+    font-size: 2em;
+}
+#img-review {
+    border-width: 1px;
+    border-radius: 5%;
+}
+
+div.jumbotron {
+    margin: 0% 5% 0% 5%;
+    border-radius: 15px 15px;
+}
+
+h1 {
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+}
+
+h2 {
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+}
+
+p {
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+}
+
+.img-about  {
+    position: relative;
+    z-index: 2;
+    height: 300px; 
+    width: 300px;
+    position: relative;
+    border-style: dashed;
+    border-width: 2px;
+    border-color:#000000;
+    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+}
+
+.img-about:hover{    
+    opacity: 0.5;    
+    background-color: #22700E;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #22700E;
+}    
+
+.img-back {     
+     border-style: solid;
+     border-width: 0px;
+     border-color:#FFFFFF;
+     border-radius: 75%;
+     border-width: 1px;
+     position: relative;
+     height: 250px;
+     width: 250px;
+     left: 36px;
+     bottom: 263px;
+     z-index: 1;
+}

@@ -1,14 +1,115 @@
-{% extends "base.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<title>
+    Zbigniew Mansel's Website
+</title>
 
-    <h1>Welcome to Flask!</h2><br>
-    <p>Click <a href="/logout">here</a> to logout.</p>
-    <br><br>
-    <h3>Posts:</h3>
-    {% for post in posts %}
-    <strong>Title: </strong>{{post.title}}<br>
-    <strong>Post: </strong> {{ post.description }}<br>
-    <br>
-    {% endfor %}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="..\static\button.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ css }}">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    #wall{
+        background-color: transparent; 
+        margin: 0% 0% 0% 2%;
+        padding: 0px;
+         margin-right: 0px;
+    }
+    .post {
+        font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+    font-size: 4;
+    margin: 0% 0% 0% 0%;
+    background-color: white;            
+    padding: 1em;
+    overflow: hidden;
+    border-radius: 25px 25px;
+    margin-right: 0px;
+    width: auto;
+    align-items: center;
+    }
+    </style>
+</head>
+<!-- w w w  . jav a 2 s.co  m-->
 
-{% endblock %}
+
+
+
+
+<body style="background-color:#693D25">
+<div class="jumbotron" style="background-color: darkgreen">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="container">
+                <h1 class="display-3" style="color: white">Welcome!</h1>
+                <h2 class="display-2" style="color: white" style="font-family: Century Gothic">
+                    I am very glad to welcome you on my webpage. I hope You will enjoy it and find
+                    it at least a bit useful.
+                </h2>
+                <h3 style="color: gray">Date: {{ date }}</h3>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="jumbotron" style="background-color: transparent; margin: 0% 5% 0% 5%">
+<div class="container-fluid">
+    <div class="row">
+          
+         <nav style="height: inherit">
+            <ul>
+                <li><a href="/" class="btn btn-mine btn-lg" style="width: 150px">Home</a></li>
+                <li>
+                    <p></p>
+                </li>
+                <li><a href="music_menu" class="btn btn-mine btn-lg" style="width: 150px">Music</a></li>
+                    <p></p>
+                <li><a href="about.html" class="btn btn-mine btn-lg" style="width: 150px">About</a></li>
+            </ul>
+        </nav>
+           
+
+        
+        <div>
+        <article id="wall">
+        <article class="post">
+            <h2>{{ title_1 }}</h2>
+            <p>        
+            {{ cut_1 }}
+           
+            </p>
+            <a href="/post/?title={{ title_link_1}}"><u>Show more...</u></a>
+        </article class="post">           
+        <article class="post" style="margin-top:1%">
+            <h2>{{ title_2 }}</h2>
+            <p>        
+            {{ cut_2 }}
+           
+            </p>
+            <a href="/post/?title={{ title_link_2}}"><u>Show more...</u></a>
+        </article>
+        <article class="post" style="margin-top:1%">
+            <h2>{{ title_3 }}</h2>
+            <p>        
+            {{ cut_3 }}
+           
+            </p>
+            <a href="/post/?title={{ title_link_3}}"><u>Show more...</u></a>
+        </article>
+        <br><a href="/all_posts" style="margin-left: 1em"><u>All posts</u></a>
+        </article>
+        
+        </div>
+        
+        
+    </div>
+</div>
+</div>
+
+</body>
+
+</html>
