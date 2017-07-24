@@ -30,7 +30,11 @@ def login_required(f):
 
 @app.route('/', methods=['GET'])
 def index():
-    date = str(datetime.now(poland))[:-22]      
+    date = str(datetime.now(poland))[:-22]
+    css = url_for('static', filename='button.css')
+    posts = db.session.query(Post).all()
+    posts = posts[-3:][::-1]
+    return render_template('index.html', posts=posts, css=css, date=date)
     result = Post.query.order_by("id desc")
     id_1 = result.first().id
     title_1 = Post.query.filter_by(id=id_1).first().title

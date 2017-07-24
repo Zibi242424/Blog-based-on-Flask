@@ -77,28 +77,28 @@
         <div>
         <article id="wall">
         <article class="post">
-            <h2>{{ title_1 }}</h2>
+            <h2>{{ posts[0].title }}</h2>
             <p>        
-            {{ cut_1 }}
+            {{ posts[0].paragraph_1[:50] }}
            
             </p>
-            <a href="/post/?title={{ title_link_1}}"><u>Show more...</u></a>
+            <a href="/post/?title={{ posts[0].title_link }}"><u>Show more...</u></a>
         </article class="post">           
         <article class="post" style="margin-top:1%">
-            <h2>{{ title_2 }}</h2>
+            <h2>{{ posts[1].title }}</h2>
             <p>        
-            {{ cut_2 }}
+            {{ posts[0].paragraph_1[:50] }}
            
             </p>
-            <a href="/post/?title={{ title_link_2}}"><u>Show more...</u></a>
+            <a href="/post/?title={{ posts[1].title_link }}"><u>Show more...</u></a>
         </article>
         <article class="post" style="margin-top:1%">
-            <h2>{{ title_3 }}</h2>
+            <h2>{{ posts[2].title }}</h2>
             <p>        
-            {{ cut_3 }}
+            {{ posts[2].paragraph_1[:50] }}
            
             </p>
-            <a href="/post/?title={{ title_link_3}}"><u>Show more...</u></a>
+            <a href="/post/?title={{ posts[2].title_link }}"><u>Show more...</u></a>
         </article>
         <br><a href="/all_posts" style="margin-left: 1em"><u>All posts</u></a>
         </article>
