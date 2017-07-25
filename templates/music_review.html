@@ -1,108 +1,188 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<title>
-    Zbigniew Mansel's Website
-</title>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/button.css">
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <style type="text/css">
-    #subtitle-review {
-        font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
-        font-size: 3em;
-        font-weight: bold;
-        text-align: justify;
+    <title>Zbigniew Mansel's Website</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ css }}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ jumbotron }}" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <style>
+    .btn-navbar {
+      background-color: transparent;
+      border-color: transparent;
+      color: #cdc9c9;
     }
-    #text-review {
-        font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
-        text-align: justify;
-        font-size: 2em;
+    .btn-navbar:hover {
+      background-color: transparent;
+      border-color: transparent;
+      color: white;
     }
-    #img-review {
-        border-width: 1px;
-        border-radius: 5%;
+    .btn-about {
+        background-color: #8b7d6b;
     }
-    </style>
-</head>
-<!-- w w w  . jav a 2 s.co  m-->
+    .btn-all-posts{
+        width: 100%;
+        background-color: #cdc5bf;        
+        
+    }
+    .jumbotron {
+      height: 400px;      
+      text-shadow: #444 0 1px 1px;     
+      
+    }
+    .bg {
+      margin-bottom: 15%;
+      background: url('{{ cover }}') no-repeat center center;
+      margin-bottom: 15%;
+      position: fixed;
+      width: 100%;
+      height: 400px; /*same height as jumbotron */
+      top: 7;
+      left:0;
+      z-index: -1;
+    }
+    .img-responsive {
+        border-radius: 10%;
+    }
+  </style>
+  </head>
 
+  <body>
 
-
-
-
-<body style="background-color:#693D25">
-<div class="jumbotron" style="background-color: darkgreen" style="margin: 0% 5% 0% 5%">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="container">
-                <h1 class="display-3" style="color: white"><i>{{ album }}</i></h1>
-                <h2 class="display-2" style="color: white" style="font-family: Century Gothic">
-                        {{ artist }}</h2>
-                <h3 style="color: gray">Posted on: {{ date }}</h3>
-
-            </div>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Z. Mansel's Website</a>
         </div>
-    </div>
-</div>
-
-<div class="jumbotron" style="background-color: transparent; margin: 0% 5% 0% 5%">
-<div class="container-fluid">
-    <div class="row">    
-         <nav>
-            <ul>
-                <li><a href="../" class="btn btn-mine btn-lg" style="width: 150px">Home</a></li>
-                <li>
-                    <p></p>
-                </li>
-                <li><a href="../music_menu" class="btn btn-mine btn-lg" style="width: 150px">Music</a></li>
-                    <p></p>
-                <li><a href="../about.html" class="btn btn-mine btn-lg" style="width: 150px">About</a></li>
-            </ul>
-        </nav>            
-        <article>  
-            <div class="row" >
-                <div class="col-xs-8">        
-                    <p id="subtitle-review">
-                        {{ header }}                       
-                    </p>
-                </div>
-                <div class="col-xs-4"> 
-                    <img class="img-responsive" id="img-review" src="{{ cover }}" alt="cover" >       
-                </div>
-                <div class="container">
-                <div class="row">
-                    <div class="col-xs-12" style="text-align: justify;">        
-                        <p id="text-review">
-                            <p>{{ paragraph_1 }}</p>
-                            <p>{{ paragraph_2 }}</p>
-                            <p>{{ paragraph_3 }}</p>
-                            <p>{{ paragraph_4 }}</p>
-                            <p>{{ paragraph_5 }}</p>
-                            <p>{{ paragraph_6 }}</p>
-                        </p>
-                        <p><font size="5"><b>Rate:</b></font><br></p>
-                        <p><font size="4"><b>{{ rate }}</b></font></p>
-                        <hr>
-                        <p><font size="5"><b>Listen: </b><br>
-                        <a href="{{ listen }}" target="__blank">{{ listen }}</a>
-                        </p>
-                    </div>
-                </div>
-                </div>    
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <a class="btn btn-primary btn-md btn-navbar" href="/" role="button">Home</a>
+            </div>
+            <div class="form-group">
+              <a class="btn btn-primary btn-md btn-navbar" href="/music_menu" role="button">Music</a>
+            </div>
+            <div class="form-group">
+              <a class="btn btn-primary btn-md btn-navbar" href="/about.html" role="button">About</a>
+            </div>
             
-        </article>           
-           
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="bg"></div>
+    <div class="jumbotron" style="background-color: rgba(205, 197, 191, 0.65)">
+      <div class="container">        
+          <h1>{{ album }}</h1>
+          <p>{{ artist }}</p>
+          <p></p>
+          
+      </div>
     </div>
-</div>
-</div>
 
-</body>
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">          
+          <img src="{{ cover }}" class="img-responsive">          
+        </div>
+        <div class="col-md-7">
+          <p style="text-align: justify" class="lead">{{ header }}
+          </p>
+        </div>
+        <div class="col-md-1"></div>        
+      </div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">          
+          <p style="text-align: justify">{{ paragraph_1 }}</p>      
+        </div>
+        <div class="col-md-5">
+           <p style="text-align: justify">{{ paragraph_2 }}</p>   
+          
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">          
+          <p style="text-align: justify">{{ paragraph_3 }}</p>      
+        </div>
+        <div class="col-md-5">
+           <p style="text-align: justify">{{ paragraph_4 }}</p>   
+          
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">          
+          <p style="text-align: justify">{{ paragraph_5 }}</p>      
+        </div>
+        <div class="col-md-5">
+           <p style="text-align: justify">{{ paragraph_6 }}</p>   
+          
+        </div>
+        <div class="col-md-1"></div>
+      </div>       
+      <hr>
 
+      <footer>
+        <p>&copy; 2017 Zbigniew Mansel</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+      var jumboHeight = $('.jumbotron').outerHeight();
+      function parallax(){
+          var scrolled = $(window).scrollTop();
+          $('.bg').css('height', (jumboHeight-scrolled) + 'px');
+      }
+
+      $(window).scroll(function(e){
+          parallax();
+      });
+    </script>
+  </body>
 </html>

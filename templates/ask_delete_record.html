@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h1>Welcome Zbyszek!</h2><br>
+    <h1>Are you sure to this record?</h2><br>
+    <strong>Id: </strong>{{ review.id }}<br>
+    <strong>Artist: </strong>{{ review.artist }}<br>
+    <strong>Album: </strong>{{ review.album }}<br>
+    <strong>Posted on: </strong>{{ review.date }}<br>
     
     <br><br>
     <h3>Menu:</h3>    
     <a href="/add_review"><button class="btn btn-default">Add review</button></a><br>
     <a href="/add_post"><button class="btn btn-default">Add post</button></a><br>
-    <a href="/edit_review_menu"><button class="btn btn-default">Edit/delete review</button></a><br>
-    <a href="/edit_post_menu"><button class="btn btn-default">Edit/delete post</button></a><br>
     <a href="/logout"><button class="btn btn-default">Logout</button></a><br>
     <br>
     

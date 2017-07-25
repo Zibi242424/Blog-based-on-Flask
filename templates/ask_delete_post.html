@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1>Are you sure to delete this record?</h2><br>
+    <strong>Id: </strong>{{ post.id }}<br>
+    <strong>Title: </strong>{{ post.title }}<br>
+    
+    <strong>Posted on: </strong>{{ post.date }}<br><br>
+    <table style="border: 0px"><tr>
+    <td style="border: 0px"><form method='POST' action='delete_post?id={{ post.id }}'> <input class="btn btn-default" type="submit" value="Yes" ></form></td>
+    <td style="border: 0px; padding-left:100%"><a href="/edit_post_menu"><button class="btn btn-default" style="margin-left: 5%">No</button></a></td><br>
+    </tr>
+    </table>
+    <br><br>
+    <h3>Menu:</h3>    
+    <a href="/add_review"><button class="btn btn-default">Add review</button></a><br>
+    <a href="/add_post"><button class="btn btn-default">Add post</button></a><br>
+    <a href="/logout"><button class="btn btn-default">Logout</button></a><br>
+    <br>
+    
+
+{% endblock %}

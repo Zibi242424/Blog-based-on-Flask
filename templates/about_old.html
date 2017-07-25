@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>
+    Zbigniew Mansel's Website
+</title>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="..\static\button.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ css }}">
+    <script src="jquery-3.2.1.min.js">
+        $(document).ready(function() {
+        $("body").addClass("animated shake");
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <!--<style type="text/css">
+    
+    </style>-->
+    <script>
+        
+    </script>
+</head>
+<!-- w w w  . jav a 2 s.co  m-->
+
+
+
+
+
+<body style="background-color:#693D25">
+<div class="jumbotron" style="background-color: darkgreen" style="margin: 0% 5% 0% 5%">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="container">
+                <h1 class="display-3" style="color: white">About</h1>
+                <h2 class="display-2" style="color: white" style="font-family: Century Gothic">
+                        Let me introduce myself.</h2>
+                <h3 style="color: gray">Date: {{ date }}</h3>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="jumbotron" style="background-color: transparent; margin: 0% 5% 0% 5%">
+<div class="container-fluid">
+    <div class="row">    
+         <nav>
+            <ul>
+                <li><a href="/" class="btn btn-mine btn-lg" style="width: 150px">Home</a></li>
+                <li>
+                    <p></p>
+                </li>
+                <li><a href="music_menu" class="btn btn-mine btn-lg" style="width: 150px">Music</a></li>
+                    <p></p>
+                <li><a href="about.html" class="btn btn-mine btn-lg" style="width: 150px">About</a></li>
+            </ul>
+        </nav>            
+        <article>          
+            <table style="width: 100%; height: 75%; border: 1px solid white; margin-right: 0%">
+                <tr>
+                    <td style="width: 75%; border: 1px solid white; text-align: justify" valign="top">
+                        
+                            <p>
+                                My name is Zbyszek and I study electronics at Wroclaw 
+                                University of Science and Technology in Poland.  This website
+                                is a project which helped me to learn web developping however I will
+                                regularly post new things concerning my hobbys such as music, mixology
+                                or technology. For the most part I will post some music reviews both
+                                in Polish and English. I love sharing new music with other people so I hope  
+                                that You wiil find some new artists thanks to this website. 
+                                I truly believe that You wil find this website useful and entertaining.
+                                If You find something that can be improved or changed, please contact me. :)</p>
+                            <hr><p>
+                            
+                            <b>Contact:</b><br>
+                                manselzbigniew@gmail.com<br>
+                                <a href="https://github.com/Zibi242424" target="__blank">Github</a><br>
+                                <a href="https://soundcloud.com/user-619274353" target="__blank">Soundcloud</a><br>
+                            </p>
+                            
+                        </td>
+                        <td>
+                            <img class="img-about" src="{{ my_photo }}" alt="My picture was supposed to be here..." >
+                            <img class="img-back" src="{{ my_photo_back }}">
+                        </td>
+            </table>
+        </article>           
+           
+    </div>
+</div>
+</div>
+
+</body>
+
+</html>

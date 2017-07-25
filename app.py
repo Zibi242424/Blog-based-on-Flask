@@ -18,6 +18,8 @@ poland = timezone('Europe/Warsaw')
 
 from models import *
 
+
+
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
@@ -28,35 +30,17 @@ def login_required(f):
             return redirect(url_for('login'))
     return wrap
 
+
+
 @app.route('/', methods=['GET'])
 def index():
-    date = str(datetime.now(poland))[:-22]
-    css = url_for('static', filename='button.css')
+    jumbotron = url_for('static',filename='jumbotron.css')
+    css = url_for('static', filename='bootstrap.min.css')
+    date = str(datetime.now(poland))[:-22]    
     posts = db.session.query(Post).all()
     posts = posts[-3:][::-1]
-    return render_template('index.html', posts=posts, css=css, date=date)
-    result = Post.query.order_by("id desc")
-    id_1 = result.first().id
-    title_1 = Post.query.filter_by(id=id_1).first().title
-    cut_1 = Post.query.filter_by(id=id_1).first().paragraph_1[0:50] + "..."
-    title_link_1 = Post.query.filter_by(id=id_1).first().title_link
+    return render_template('index.html', posts=posts, css=css, jumbotron=jumbotron, date=date)
     
-    id_2 = id_1 - 1
-    title_2 = Post.query.filter_by(id=id_2).first().title
-    cut_2 = Post.query.filter_by(id=id_2).first().paragraph_1[0:50] + "..."
-    title_link_2 = Post.query.filter_by(id=id_2).first().title_link
-
-    id_3 = id_2 - 1
-    title_3 = Post.query.filter_by(id=id_3).first().title
-    cut_3 = Post.query.filter_by(id=id_3).first().paragraph_1[0:50] + "..."
-    title_link_3 = Post.query.filter_by(id=id_3).first().title_link
-    css = url_for('static', filename='button.css')
-    db.session.commit()
-    db.session.close()
-    return render_template('index.html',  title_1=title_1, cut_1=cut_1, title_link_1=title_link_1, 
-    title_2=title_2, cut_2=cut_2, title_link_2=title_link_2,
-    tile_3=title_3, cut_3=cut_3, title_link_3=title_link_3, css=css, date=date)
-
 
 @app.route('/dev_menu')
 @login_required
@@ -64,11 +48,12 @@ def home():
     return render_template("dev_menu.html")
 
 @app.route('/about.html')
-def about():  
+def about():
+    jumbotron = url_for('static',filename='jumbotron.css')
+    css = url_for('static', filename='bootstrap.min.css')  
     date = str(datetime.now(poland))[:-22]   
     my_photo = url_for('static', filename='about_photo.jpg')
-    my_photo_back = url_for('static', filename='about_ZM_background.jpg')
-    css = url_for('static', filename='button.css')
+    my_photo_back = url_for('static', filename='about_ZM_background.jpg')    
     return render_template('about.html', my_photo=my_photo, my_photo_back=my_photo_back, css=css, date=date)
 
 @app.route('/welcome')
@@ -191,6 +176,47 @@ def adding_review():
         return f"{album} review was added... {msg}"
     return "No authorization to perform this action."
 
+@app.route('/edit_review_menu')
+@login_required
+def edit_review_menu():
+    reviews = db.session.query(Review).all()[::-1]
+    return render_template('edit_review_menu.html', reviews=reviews)
+
+@app.route('/delete_review', methods=['GET','POST'])
+@login_required
+def deleting_review():
+    if request.method == 'GET':
+        id = int(request.args.get('id', None))
+        review = db.session.query(Review).filter_by(id=id).first()
+        return render_template('ask_delete_review.html', review=review)
+    if request.method == 'POST':
+        id = int(request.args.get('id', None))
+        db.session.query(Review).filter_by(id=id).delete()
+        db.session.commit()
+        flash(f'Review with id {id} has been deleted.')
+        return redirect(url_for('edit_review_menu'))
+
+@app.route('/edit_post_menu')
+@login_required
+def edit_post_menu():
+    posts = db.session.query(Review).all()[::-1]
+    return render_template('edit_post_menu.html', posts=posts)
+
+@app.route('/delete_post', methods=['GET','POST'])
+@login_required
+def deleting_post():
+    if request.method == 'GET':
+        id = int(request.args.get('id', None))
+        post = db.session.query(Post).filter_by(id=id).first()
+        return render_template('ask_delete_post.html', post=post)
+    if request.method == 'POST':
+        id = int(request.args.get('id', None))
+        title = db.session.query(Post).filter_by(id=id).first().title
+        db.session.query(Post).filter_by(id=id).delete()
+        db.session.commit()
+        flash(f"Post with id {id} and title '{title}' has been deleted.")
+        return redirect(url_for('edit_post_menu'))
+
 @app.route('/music_menu')
 def music_menu():
     
@@ -204,7 +230,9 @@ def music_menu():
            presented on a requested page
            4) Important infos like 'artist', 'album' or links to reviews are being stored 
            in dictionaries and the passed to 'music_menu.html' 
-    """    
+    """
+    jumbotron = url_for('static',filename='jumbotron.css')
+    css = url_for('static', filename='bootstrap.min.css')      
     date = str(datetime.now(poland))[:-22]
     page = int(request.args.get('page', 1))
     reviews = db.session.query(Review).all()[::-1]
@@ -213,7 +241,7 @@ def music_menu():
     for i in range(0,x):
         buttons.append(i+1)
     reviews = reviews[(page - 1)*9: 9*page]     
-    return render_template('music_menu.html', reviews=reviews, buttons=buttons, date=date)
+    return render_template('music_menu.html', reviews=reviews, buttons=buttons, date=date, css=css, jumbotron=jumbotron)
     
 
 @app.route('/music/')
@@ -245,12 +273,13 @@ def music_review():
     date = result[0].date
     db.session.commit()
     db.session.close()
-    css = url_for('static', filename='button.css')
+    jumbotron = url_for('static',filename='jumbotron.css')
+    css = url_for('static', filename='bootstrap.min.css') 
     if type(paragraph_1) == str:
         return render_template('music_review.html', artist=artist, album=album,
         paragraph_1=paragraph_1, paragraph_2=paragraph_2, paragraph_3=paragraph_3,
         paragraph_4=paragraph_4, paragraph_5=paragraph_5, paragraph_6=paragraph_6,
-        cover=cover, header=header, listen=listen, date=date, rate=rate, css=css)
+        cover=cover, header=header, listen=listen, date=date, rate=rate, css=css, jumbotron=jumbotron)
     else:
         return f"Upsss, something went wrong. Sorry. :("
 
