@@ -103,8 +103,8 @@
         <div class="col-md-12">          
           <p style="text-align: justify">
               {% for review in reviews %}
-              <a id="elo" href="/music/?artist={{ review.artist_link }}&album={{ review.album_link }}">{{ review.artist }} - {{ review.album }}</a>
-              <font color="grey"> {{ review.language }}</font><br>
+              <font style="font-size: 200%"><a id="elo" href="/music/?artist={{ review.artist_link }}&album={{ review.album_link }}">{{ review.artist }} - {{ review.album }}</a>
+              <font color="grey"> {{ review.language }}</font></font><br>
               {% endfor %}
           </p>
           <p></p>
