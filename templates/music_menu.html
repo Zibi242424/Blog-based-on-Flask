@@ -52,7 +52,26 @@
     .jumbotron {
         text-shadow: #444 0 1px 1px; 
     }
-    
+    @media only screen and (min-width: 1200px) {
+    body {
+    font-size: 21px;
+    }
+    }
+    @media only screen and (max-width: 768px) {
+    body {
+    font-size: 20px;
+    }
+    }
+    @media only screen and (max-width: 1200px) {
+    body {
+    font-size: 20px;
+    }
+    }
+    @media only screen and (max-width: 320px) {
+    body {
+    font-size: 10px;
+    }
+    }
   </style>
   </head>
 
@@ -75,7 +94,7 @@
               <a class="btn btn-primary btn-md btn-navbar form-control" href="/" role="button">Home</a>
             </div>
             <div class="form-group">
-              <a class="btn btn-primary btn-md btn-navbar form-control" href="/music" role="button">Music</a>
+              <a class="btn btn-primary btn-md btn-navbar form-control" href="/music_menu" role="button">Music</a>
             </div>
             <div class="form-group">
               <a class="btn btn-primary btn-md btn-navbar form-control" href="/about.html" role="button">About</a>
@@ -103,8 +122,8 @@
         <div class="col-md-12">          
           <p style="text-align: justify">
               {% for review in reviews %}
-              <font style="font-size: 200%"><a id="elo" href="/music/?artist={{ review.artist_link }}&album={{ review.album_link }}">{{ review.artist }} - {{ review.album }}</a>
-              <font color="grey"> {{ review.language }}</font></font><br>
+              <a id="elo" href="/music/?artist={{ review.artist_link }}&album={{ review.album_link }}">{{ review.artist }} - {{ review.album }}</a>
+              <font color="grey"> {{ review.language }}</font><br>
               {% endfor %}
           </p>
           <p></p>

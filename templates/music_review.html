@@ -68,6 +68,26 @@
     .img-responsive {
         border-radius: 10%;
     }
+    @media only screen and (min-width: 1200px) {
+    body {
+    font-size: 21px;
+    }
+    }
+    @media only screen and (max-width: 768px) {
+    body {
+    font-size: 20px;
+    }
+    }
+    @media only screen and (max-width: 1200px) {
+    body {
+    font-size: 20px;
+    }
+    }
+    @media only screen and (max-width: 320px) {
+    body {
+    font-size: 10px;
+    }
+    }
   </style>
   </head>
 
@@ -121,7 +141,7 @@
           <img src="{{ cover }}" class="img-responsive">          
         </div>
         <div class="col-md-7">
-          <p style="text-align: justify" class="lead"><b>{{ header }}</b>
+          <p  style="text-align: justify"><b>{{ header }}</b>
           </p>
         </div>
         <div class="col-md-1"></div>        
