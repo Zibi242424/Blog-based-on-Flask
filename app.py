@@ -289,7 +289,8 @@ def post():
         Function return post. The title is taken from the URL.
         The title and paragraphs are then passed to template.
     """
-    css = url_for('static', filename='button.css')
+    jumbotron = url_for('static',filename='jumbotron.css')
+    css = url_for('static', filename='bootstrap.min.css') 
     title_link = request.args.get('title',None)
     kwargs = {'title_link': title_link}
     result = db.session.query(Post).filter_by(**kwargs)
@@ -307,7 +308,7 @@ def post():
         return render_template('post.html', title=title,
         paragraph_1=paragraph_1, paragraph_2=paragraph_2, paragraph_3=paragraph_3,
         paragraph_4=paragraph_4, paragraph_5=paragraph_5, paragraph_6=paragraph_6,
-        date=date, css=css)
+        date=date, css=css, jumbotron=jumbotron)
     else:
         return "Ups, something went wrong :("
 
@@ -315,7 +316,9 @@ def post():
 def all_posts():
     date = str(datetime.now(poland))[:-22]
     posts = db.session.query(Post).all()[::-1]
-    return render_template('all_posts.html', posts=posts, date=date)
+    jumbotron = url_for('static',filename='jumbotron.css')
+    css = url_for('static', filename='bootstrap.min.css') 
+    return render_template('all_posts.html', posts=posts, date=date, css=css, jumbotron=jumbotron)
 
 if __name__ == '__main__':
     app.run()

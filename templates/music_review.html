@@ -87,13 +87,13 @@
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
             <div class="form-group">
-              <a class="btn btn-primary btn-md btn-navbar" href="/" role="button">Home</a>
+              <a class="btn btn-primary btn-md btn-navbar form-control" href="/" role="button">Home</a>
             </div>
             <div class="form-group">
-              <a class="btn btn-primary btn-md btn-navbar" href="/music_menu" role="button">Music</a>
+              <a class="btn btn-primary btn-md btn-navbar form-control" href="/music_menu" role="button">Music</a>
             </div>
             <div class="form-group">
-              <a class="btn btn-primary btn-md btn-navbar" href="/about.html" role="button">About</a>
+              <a class="btn btn-primary btn-md btn-navbar form-control" href="/about.html" role="button">About</a>
             </div>
             
           </form>
@@ -103,10 +103,11 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="bg"></div>
-    <div class="jumbotron" style="background-color: rgba(205, 197, 191, 0.65)">
+    <div class="jumbotron" style="background-color: rgba(192, 192, 192, 0.65)">
       <div class="container">        
           <h1>{{ album }}</h1>
-          <p>{{ artist }}</p>
+          <h2>{{ artist }}</h2>
+          <p>Posted on: {{ date }}</p>
           <p></p>
           
       </div>
@@ -120,46 +121,61 @@
           <img src="{{ cover }}" class="img-responsive">          
         </div>
         <div class="col-md-7">
-          <p style="text-align: justify" class="lead">{{ header }}
+          <p style="text-align: justify" class="lead"><b>{{ header }}</b>
           </p>
         </div>
         <div class="col-md-1"></div>        
       </div>
       <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-5">          
+        <div class="col-md-10">          
           <p style="text-align: justify">{{ paragraph_1 }}</p>      
-        </div>
-        <div class="col-md-5">
-           <p style="text-align: justify">{{ paragraph_2 }}</p>   
-          
-        </div>
+        </div>        
         <div class="col-md-1"></div>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-5">          
+        <div class="col-md-10">          
+          <p style="text-align: justify">{{ paragraph_2 }}</p>      
+        </div>        
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">          
           <p style="text-align: justify">{{ paragraph_3 }}</p>      
-        </div>
-        <div class="col-md-5">
-           <p style="text-align: justify">{{ paragraph_4 }}</p>   
-          
-        </div>
+        </div>        
         <div class="col-md-1"></div>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-5">          
-          <p style="text-align: justify">{{ paragraph_5 }}</p>      
-        </div>
-        <div class="col-md-5">
-           <p style="text-align: justify">{{ paragraph_6 }}</p>   
-          
-        </div>
+          <p style="text-align: justify">{{ paragraph_4 }}</p>      
+        </div>        
         <div class="col-md-1"></div>
       </div>
       <div class="row">
-      </div>       
+        <div class="col-md-1"></div>
+        <div class="col-md-10">          
+          <p style="text-align: justify">{{ paragraph_5 }}</p>      
+        </div>        
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">          
+          <p style="text-align: justify">{{ paragraph_6 }}</p>      
+        </div>        
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">          
+          <p style="text-align: justify"><b>Rate: </b><br>{{ rate }}</p>
+          <p style="text-align: justify"><b>Listen: </b><br>{{ listen }}</p>        
+        </div>        
+        <div class="col-md-1"></div>
+      </div>     
       <hr>
 
       <footer>
@@ -172,8 +188,8 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../../dist/js/bootstrap.min.js"></script>
