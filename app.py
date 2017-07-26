@@ -199,7 +199,7 @@ def deleting_review():
 @app.route('/edit_post_menu')
 @login_required
 def edit_post_menu():
-    posts = db.session.query(Review).all()[::-1]
+    posts = db.session.query(Post).all()[::-1]
     return render_template('edit_post_menu.html', posts=posts)
 
 @app.route('/delete_post', methods=['GET','POST'])

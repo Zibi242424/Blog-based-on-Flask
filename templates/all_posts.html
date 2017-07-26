@@ -52,6 +52,9 @@
     .jumbotron {
         text-shadow: #444 0 1px 1px; 
     }
+    a.vis:visited{
+        color: black;
+    }
     @media only screen and (min-width: 1200px) {
     body {
     font-size: 21px;
@@ -122,7 +125,7 @@
         <div class="col-md-12">          
           <p style="text-align: justify">
               {% for post in posts %}
-              <a href="/post/?title={{ post.title_link }}">{{ post.title }}</a>
+              <a class="vis" href="/post/?title={{ post.title_link }}">{{ post.title }}</a>
               <font style="color: grey"> | {{ post.date }}</font><br>              
               {% endfor %}
           </p>

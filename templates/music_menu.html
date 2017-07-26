@@ -52,6 +52,9 @@
     .jumbotron {
         text-shadow: #444 0 1px 1px; 
     }
+    a.vis:visited{
+        color: black;
+    }
     @media only screen and (min-width: 1200px) {
     body {
     font-size: 21px;
@@ -122,7 +125,7 @@
         <div class="col-md-12">          
           <p style="text-align: justify">
               {% for review in reviews %}
-              <a id="elo" href="/music/?artist={{ review.artist_link }}&album={{ review.album_link }}">{{ review.artist }} - {{ review.album }}</a>
+              <a class="vis" href="/music/?artist={{ review.artist_link }}&album={{ review.album_link }}">{{ review.artist }} - {{ review.album }}</a>
               <font color="grey"> {{ review.language }}</font><br>
               {% endfor %}
           </p>
