@@ -64,7 +64,7 @@ def welcome():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+        if request.form['username'] != 'Zibi242424' or request.form['password'] != 'fihejook':
             error = 'Invalid credentials. Please try again.'
         else:
             session['logged_in'] = True
