@@ -125,7 +125,7 @@
     <div class="bg"></div>
     <div class="jumbotron" style="background-color: #C0C0C0">
       <div class="container" style="padding: 1em">        
-          <h1>{{ title }}</h1>
+          <h1>{{ title|safe }}</h1>
           <p>Posted on: {{ date }}</p>
           <p></p>
           
@@ -138,42 +138,42 @@
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">          
-          <p style="text-align: justify" class="lead"><b>{{ paragraph_1 }}</b></p>      
+          <p style="text-align: justify" class="lead"><b>{{ paragraph_1|safe }}</b></p>      
         </div>        
         <div class="col-md-1"></div>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">          
-          <p style="text-align: justify">{{ paragraph_2 }}</p>      
+          <p style="text-align: justify">{{ paragraph_2|safe }}</p>      
         </div>        
         <div class="col-md-1"></div>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">          
-          <p style="text-align: justify">{{ paragraph_3 }}</p>      
+          <p style="text-align: justify">{{ paragraph_3|safe }}</p>      
         </div>        
         <div class="col-md-1"></div>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-5">          
-          <p style="text-align: justify">{{ paragraph_4 }}</p>      
+          <p style="text-align: justify">{{ paragraph_4|safe }}</p>      
         </div>        
         <div class="col-md-1"></div>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">          
-          <p style="text-align: justify">{{ paragraph_5 }}</p>      
+          <p style="text-align: justify">{{ paragraph_5|safe }}</p>      
         </div>        
         <div class="col-md-1"></div>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">          
-          <p style="text-align: justify">{{ paragraph_6 }}</p>      
+          <p style="text-align: justify">{{ paragraph_6|safe }}</p>      
         </div>        
         <div class="col-md-1"></div>
       </div>
@@ -181,7 +181,7 @@
       <hr>
 
       <footer>
-        <p>&copy; 2017 Zbigniew Mansel</p>
+        <p style="font-size: 60%">&copy; 2017 Zbigniew Mansel</p>
       </footer>
     </div> <!-- /container -->
 

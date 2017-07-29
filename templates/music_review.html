@@ -125,8 +125,8 @@
     <div class="bg"></div>
     <div class="jumbotron" style="background-color: rgba(192, 192, 192, 0.65)">
       <div class="container">        
-          <h1>{{ album }}</h1>
-          <h2>{{ artist }}</h2>
+          <h1>{{ album|safe }}</h1>
+          <h2>{{ artist|safe }}</h2>
           <p>Posted on: {{ date }}</p>
           <p></p>
           
@@ -141,7 +141,7 @@
           <img src="{{ cover }}" class="img-responsive">          
         </div>
         <div class="col-md-7">
-          <p  style="text-align: justify"><b>{{ header }}</b>
+          <p  style="text-align: justify"><b>{{ header|safe }}</b>
           </p>
         </div>
         <div class="col-md-1"></div>        
@@ -149,57 +149,57 @@
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">          
-          <p style="text-align: justify">{{ paragraph_1 }}</p>      
+          <p style="text-align: justify">{{ paragraph_1|safe }}</p>      
         </div>        
         <div class="col-md-1"></div>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">          
-          <p style="text-align: justify">{{ paragraph_2 }}</p>      
+          <p style="text-align: justify">{{ paragraph_2|safe }}</p>      
         </div>        
         <div class="col-md-1"></div>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">          
-          <p style="text-align: justify">{{ paragraph_3 }}</p>      
+          <p style="text-align: justify">{{ paragraph_3|safe }}</p>      
         </div>        
         <div class="col-md-1"></div>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">          
-          <p style="text-align: justify">{{ paragraph_4 }}</p>      
+          <p style="text-align: justify">{{ paragraph_4|safe }}</p>      
         </div>        
         <div class="col-md-1"></div>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">          
-          <p style="text-align: justify">{{ paragraph_5 }}</p>      
+          <p style="text-align: justify">{{ paragraph_5|safe }}</p>      
         </div>        
         <div class="col-md-1"></div>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">          
-          <p style="text-align: justify">{{ paragraph_6 }}</p>      
+          <p style="text-align: justify">{{ paragraph_6|safe }}</p>      
         </div>        
         <div class="col-md-1"></div>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">          
-          <p style="text-align: justify"><b>Rate: </b><br>{{ rate }}</p>
-          <p style="text-align: justify"><b>Listen: </b><br><a href="{{ listen }}" target="__blank">{{ listen }}</a></p>        
+          <p style="text-align: justify"><b>Rate: </b><br>{{ rate|safe }}</p>
+          <p style="text-align: justify"><b>Listen: </b><br><a href="{{ listen }}" target="__blank">{{ listen|safe }}</a></p>        
         </div>        
         <div class="col-md-1"></div>
       </div>     
       <hr>
 
       <footer>
-        <p>&copy; 2017 Zbigniew Mansel</p>
+        <p style="font-size: 60%">&copy; 2017 Zbigniew Mansel</p>
       </footer>
     </div> <!-- /container -->
 

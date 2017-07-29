@@ -118,22 +118,22 @@
 
     <div class="container">
       <!-- Example row of columns -->
-      <div class="row">
+      <div class="row">        
         <div class="col-md-4">
-          <h2>{{ posts[0].title }}</h2>
-          <p>{{ posts[0].paragraph_1[:50] }}...</p>
+          <h2>{{ posts[0].title|striptags }}</h2>
+          <p>{{ posts[0].paragraph_1[:50]|striptags }}...</p>
           <p><a class="btn btn-default" href="/post/?title={{ posts[0].title_link }}" role="button">Show more &raquo;</a></p>
         </div>
         <div class="col-md-4">
-          <h2>{{ posts[1].title }}</h2>
-          <p>{{ posts[1].paragraph_1[:50] }}...</p>
+          <h2>{{ posts[1].title|striptags }}</h2>
+          <p>{{ posts[1].paragraph_1[:50]|striptags }}...</p>
           <p><a class="btn btn-default" href="/post/?title={{ posts[1].title_link }}" role="button">Show more &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>{{ posts[2].title }}</h2>
-          <p>{{ posts[2].paragraph_1[:50] }}...</p>
-          <p><a class="btn btn-default" href="/post/?title={{ posts[2].title_link }}" role="button">Show more &raquo;</a></p>
         </div>
+        <div class="col-md-4">
+          <h2>{{ posts[2].title|striptags }}</h2>
+          <p>{{ posts[2].paragraph_1[:50]|striptags }}...</p>
+          <p><a class="btn btn-default" href="/post/?title={{ posts[2].title_link }}" role="button">Show more &raquo;</a></p>
+        </div>        
         
         <div class="row">            
             <div class="col-md-12"><br><br><center>
@@ -145,7 +145,7 @@
       <hr>
 
       <footer>
-        <p>&copy; 2017 Zbigniew Mansel</p>
+        <p style="font-size: 60%">&copy; 2017 Zbigniew Mansel</p>
       </footer>
     </div> <!-- /container -->
 

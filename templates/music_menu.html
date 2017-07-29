@@ -125,7 +125,7 @@
         <div class="col-md-12">          
           <p style="text-align: justify">
               {% for review in reviews %}
-              <a class="vis" href="/music/?artist={{ review.artist_link }}&album={{ review.album_link }}">{{ review.artist }} - {{ review.album }}</a>
+              <a class="vis" style="color: black" href="/music/?artist={{ review.artist_link }}&album={{ review.album_link }}">{{ review.artist|striptags }} - {{ review.album|striptags }}</a>
               <font color="grey"> {{ review.language }}</font><br>
               {% endfor %}
           </p>
@@ -143,7 +143,7 @@
       <hr>
 
       <footer>
-        <p>&copy; 2017 Zbigniew Mansel</p>
+        <p style="font-size: 60%">&copy; 2017 Zbigniew Mansel</p>
       </footer>
     </div> <!-- /container -->
 
