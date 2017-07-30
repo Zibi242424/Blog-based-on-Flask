@@ -37,8 +37,7 @@ def index():
     jumbotron = url_for('static',filename='jumbotron.css')
     css = url_for('static', filename='bootstrap.min.css')
     date = str(datetime.now(poland))[:-22]    
-    posts = db.session.query(Post).all()
-    posts = posts[-3:][::-1]
+    posts = db.session.query(Post).order_by("id")[::-1][:3]
     return render_template('index.html', posts=posts, css=css, jumbotron=jumbotron, date=date)
     
 
