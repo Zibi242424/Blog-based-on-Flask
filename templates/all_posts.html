@@ -54,25 +54,29 @@
     }
     a.vis:visited{
         color: black;
-    }
+    }    
     @media only screen and (min-width: 1200px) {
     body {
     font-size: 21px;
+    
     }
     }
     @media only screen and (max-width: 768px) {
     body {
     font-size: 20px;
+    
     }
     }
     @media only screen and (max-width: 1200px) {
     body {
     font-size: 20px;
+    
     }
     }
     @media only screen and (max-width: 320px) {
     body {
     font-size: 10px;
+    
     }
     }
   </style>
@@ -125,8 +129,14 @@
         <div class="col-md-12">          
           <p style="text-align: justify">
               {% for post in posts %}
-              <a class="vis" style="color: black" href="/post/?title={{ post.title_link }}">{{ post.title|striptags }}</a>
-              <font style="color: grey"> | {{ post.date }}</font><br>              
+              {% if post.id%2 == 0 %}
+                <p style="background-color: 	rgba(192,192,192, 0.4)"><a class="vis" style="color: black" href="/post/?title={{ post.title_link }}">{{ post.title|striptags }}</a>
+                <font style="color: grey"> | {{ post.date }}</font><br></p>  
+              {% endif %}   
+              {% if post.id%2 == 1 %}
+                <p><a class="vis" style="color: black" href="/post/?title={{ post.title_link }}">{{ post.title|striptags }}</a>
+                <font style="color: grey"> | {{ post.date }}</font><br></p>  
+              {% endif %}            
               {% endfor %}
           </p>
           <p></p>

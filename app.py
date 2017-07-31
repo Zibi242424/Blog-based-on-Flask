@@ -314,7 +314,7 @@ def post():
 @app.route('/all_posts')
 def all_posts():
     date = str(datetime.now(poland))[:-22]
-    posts = db.session.query(Post).all()[::-1]
+    posts = db.session.query(Post).order_by("id")[::-1]
     jumbotron = url_for('static',filename='jumbotron.css')
     css = url_for('static', filename='bootstrap.min.css') 
     return render_template('all_posts.html', posts=posts, date=date, css=css, jumbotron=jumbotron)
