@@ -5,6 +5,7 @@ from functools import wraps
 from datetime import datetime
 from pytz import timezone
 import re
+from credentials import user_log, user_pass
 
 
 app = Flask(__name__)
@@ -14,6 +15,7 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 
 db = SQLAlchemy(app)
 
+#Setting a timezone
 poland = timezone('Europe/Warsaw')
 
 from models import *
@@ -39,12 +41,6 @@ def index():
     date = str(datetime.now(poland))[:-22]    
     posts = db.session.query(Post).order_by("id")[::-1][:3]
     return render_template('index.html', posts=posts, css=css, jumbotron=jumbotron, date=date)
-    
-
-@app.route('/dev_menu')
-@login_required
-def home():    
-    return render_template("dev_menu.html")
 
 @app.route('/about.html')
 def about():
@@ -53,7 +49,13 @@ def about():
     date = str(datetime.now(poland))[:-22]   
     my_photo = url_for('static', filename='about_photo.jpg')
     my_photo_back = url_for('static', filename='about_ZM_background.jpg')    
-    return render_template('about.html', my_photo=my_photo, my_photo_back=my_photo_back, css=css, date=date)
+    return render_template('about.html', my_photo=my_photo, my_photo_back=my_photo_back, css=css, date=date)    
+    
+################################__ADMIN_MENU__####################
+@app.route('/dev_menu')
+@login_required
+def home():    
+    return render_template("dev_menu.html")
 
 @app.route('/welcome')
 def welcome():
@@ -63,7 +65,7 @@ def welcome():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != 'Zibi242424' or request.form['password'] != 'fihejook':
+        if request.form['username'] != user_log or request.form['password'] != user_pass:
             error = 'Invalid credentials. Please try again.'
         else:
             session['logged_in'] = True
@@ -89,7 +91,7 @@ def adding_post():
         return render_template('add_post.html')
     if request.method == 'POST':        
         title = request.form['title']
-        text= request.form['text']        
+        text = f"""{request.form['text']}"""        
         if title == '' or text == '':
             return "You didn't fill all the obligatory fields (title, text)."
         if Post.query.filter_by(title=title).first() is not None:
@@ -107,7 +109,7 @@ def adding_post():
             x = l[i].search(text)
             if x is None:
                 break
-            paragraphs[i] = x.group(2)
+            paragraphs[i] = f"""{x.group(2)}"""
             if type(paragraphs[i]) != str:
                 break
         lowercase = re.compile(r' ')
@@ -134,8 +136,8 @@ def adding_review():
         artist = request.form['artist']
         album = request.form['album']
         cover = request.form['cover']
-        header = request.form['header']
-        review_v = request.form['review']
+        header = f"""{request.form['header']}"""
+        review_v = f"""{request.form['review']}"""
         listen = request.form['listen']
         rate = request.form['rate']
         if artist == '' or album == '' or header == '':
@@ -155,20 +157,16 @@ def adding_review():
             x = l[i].search(review_v)
             if x is None:
                 break
-            paragraphs[i] = x.group(2)
+            paragraphs[i] = f"""{x.group(2)}"""
             if type(paragraphs[i]) != str:
                 break
         lowercase = re.compile(r' ')
         artist_link = lowercase.sub('_', artist).lower()
-        album_link =  lowercase.sub('_', album).lower()
-        
+        album_link =  lowercase.sub('_', album).lower()        
         date = str(datetime.now(poland))[:-13]       
         db.session.add(Review(artist, album, cover, header, paragraphs[0], paragraphs[1], 
-    paragraphs[2], paragraphs[3], paragraphs[4], paragraphs[5], listen, date, 
-    rate, 
-    language, 
-    artist_link, 
-    album_link))
+            paragraphs[2], paragraphs[3], paragraphs[4], paragraphs[5], listen, date, 
+            rate, language, artist_link, album_link))
         db.session.commit()
         db.session.close()
         msg = "Added succesfully"                      
@@ -178,12 +176,23 @@ def adding_review():
 @app.route('/edit_review_menu')
 @login_required
 def edit_review_menu():
+    """
+        Prints all the reviews in the database in a table
+        and gives a possibility to edit them or delete.
+        
+        Function returns to the template a table of Review objects.
+    """
     reviews = db.session.query(Review).all()[::-1]
     return render_template('edit_review_menu.html', reviews=reviews)
 
 @app.route('/delete_review', methods=['GET','POST'])
 @login_required
 def deleting_review():
+    """
+        Function firstly asks user if he is sure to delete
+        a review and if user answers yes it removes a post
+        from the database.
+    """
     if request.method == 'GET':
         id = int(request.args.get('id', None))
         review = db.session.query(Review).filter_by(id=id).first()
@@ -198,12 +207,23 @@ def deleting_review():
 @app.route('/edit_post_menu')
 @login_required
 def edit_post_menu():
+    """
+        Prints all the posts in the database in a table
+        and gives a possibility to edit them or delete.
+        
+        Function returns to the template a table of Post objects.
+    """
     posts = db.session.query(Post).all()[::-1]
     return render_template('edit_post_menu.html', posts=posts)
 
 @app.route('/delete_post', methods=['GET','POST'])
 @login_required
 def deleting_post():
+    """
+        Function firstly asks user if he is sure to delete
+        a post and if user answers yes it removes a post
+        from the database.
+    """
     if request.method == 'GET':
         id = int(request.args.get('id', None))
         post = db.session.query(Post).filter_by(id=id).first()
@@ -215,20 +235,19 @@ def deleting_post():
         db.session.commit()
         flash(f"Post with id {id} and title '{title}' has been deleted.")
         return redirect(url_for('edit_post_menu'))
+###############################__END_OF_ADMIN_REVIEW__################################
+
 
 @app.route('/music_menu')
 def music_menu():
     
     """
-        This function creates a dynamic menu for music reviews.
-        at /music?page=1 there are the newest ones (maximum 9 per page).
-           1) Firstly the function checkes if requested page isnt too big.
-           2) Secondly, it creates a list 'l' of lists of dictionaries returned from 'review_base.json'
-           The index 0 of a list is always the review which was added lastly.
-           3) Function creates a list 'a' of maximum 9 elements which will be
-           presented on a requested page
-           4) Important infos like 'artist', 'album' or links to reviews are being stored 
-           in dictionaries and the passed to 'music_menu.html' 
+        Function returns to the template a list of nine Review objects
+        placed from the newest to oldest.
+        It also return a button variable which is used in a template
+        to print a proper amount of buttons used to jump beetwen pages with
+        links to reviews.
+
     """
     jumbotron = url_for('static',filename='jumbotron.css')
     css = url_for('static', filename='bootstrap.min.css')      
@@ -244,12 +263,13 @@ def music_menu():
     
 
 @app.route('/music/')
-def music_review():
-  
+def music_review():  
     """
-       # Function gets arguments like 'artist', 'review' etc from the music menu
-       # and then it passes it to the template 'music_review.html' where the review
-       # is shown.
+       Function reads the values of 'artist' and 'album' in the 
+       URL and then checks whether there is a record with the same
+       values in 'artist_link' and 'album_link' columns.
+       Then it takes the record from the database and passes variables like 
+       album name, cover or paragraphs to the template.
     """
     db.session.close()
     db.session.commit()
@@ -285,8 +305,11 @@ def music_review():
 @app.route('/post/')
 def post():
     """
-        Function return post. The title is taken from the URL.
-        The title and paragraphs are then passed to template.
+       Function reads the values of 'title' in the 
+       URL and then checks whether there is a record with the same
+       value in 'title_link' column.
+       Then it takes the record from the database and passes variables like 
+       title, date or paragraphs to the template.
     """
     jumbotron = url_for('static',filename='jumbotron.css')
     css = url_for('static', filename='bootstrap.min.css') 
@@ -313,6 +336,10 @@ def post():
 
 @app.route('/all_posts')
 def all_posts():
+    """
+        Function takes all posts and returns them 
+        in form of a list to the template.
+    """
     date = str(datetime.now(poland))[:-22]
     posts = db.session.query(Post).order_by("id")[::-1]
     jumbotron = url_for('static',filename='jumbotron.css')
