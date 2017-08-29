@@ -182,8 +182,61 @@ def edit_review_menu():
         
         Function returns to the template a table of Review objects.
     """
-    reviews = db.session.query(Review).all()[::-1]
+    reviews = db.session.query(Review).order_by("id desc")
     return render_template('edit_review_menu.html', reviews=reviews)
+
+@app.route('/edit_review/', methods=['GET','POST'])
+@login_required
+def edit_review():
+    if request.method == 'GET':
+        id = int(request.args.get('id', None))
+        global review
+        review = db.session.query(Review).filter_by(id=id).first()
+        return render_template('edit_review.html', review=review)
+    if request.method == 'POST':
+        artist = request.form['artist']
+        album = request.form['album']
+        cover = request.form['cover']
+        header = f"""{request.form['header']}"""
+        review_v = f"""{request.form['review']}"""
+        listen = request.form['listen']
+        rate = request.form['rate']
+        if artist == '' or album == '' or header == '':
+            return "You didn't fill all the obligatory fields (artist, album, header)."        
+        language = request.form['language']
+        par1 = re.compile(r'(p1)(.*)(/p1)')
+        par2 = re.compile(r'(p2)(.*)(/p2)')
+        par3 = re.compile(r'(p3)(.*)(/p3)')
+        par4 = re.compile(r'(p4)(.*)(/p4)')
+        par5 = re.compile(r'(p5)(.*)(/p5)')
+        par6 = re.compile(r'(p6)(.*)(/p6)')
+        l = [par1, par2, par3, par4, par5, par6]
+        paragraphs = [None, None, None, None, None, None]
+        for i in range(0,6):
+            x = l[i].search(review_v)
+            if x is None:
+                break
+            paragraphs[i] = f"""{x.group(2)}"""
+            if type(paragraphs[i]) != str:
+                break
+        lowercase = re.compile(r' ')
+        review.artist = artist
+        review.album = album
+        review.header = header
+        review.paragraph_1 = paragraphs[0]
+        review.paragraph_2 = paragraphs[1]
+        review.paragraph_3 = paragraphs[2]
+        review.paragraph_4 = paragraphs[3]
+        review.paragraph_5 = paragraphs[4]
+        review.paragraph_6 = paragraphs[5]
+        review.cover = cover
+        review.rate = rate
+        review.listen = listen
+        review.artist_link = lowercase.sub('_', artist).lower()
+        review.album_link = lowercase.sub('_', album).lower()
+        review.date = str(datetime.now(poland))[:-13]
+        db.session.commit()
+        return f"'{review.album}' review was updated"
 
 @app.route('/delete_review', methods=['GET','POST'])
 @login_required
@@ -213,8 +266,51 @@ def edit_post_menu():
         
         Function returns to the template a table of Post objects.
     """
-    posts = db.session.query(Post).all()[::-1]
+    posts = db.session.query(Post).order_by("id desc")
     return render_template('edit_post_menu.html', posts=posts)
+
+@app.route('/edit_post/', methods=['GET','POST'])
+@login_required
+def edit_post():
+    if request.method == 'GET':
+        id = int(request.args.get('id', None))
+        global post
+        post = db.session.query(Post).filter_by(id=id).first()
+        return render_template('edit_post.html', post=post)
+    if request.method == 'POST':
+        title = request.form['title']
+        text = f"""{request.form['text']}"""
+        if title == '' or text == '':
+            return "You didn't fill all the obligatory fields (title, text)."        
+        language = request.form['language']
+        par1 = re.compile(r'(p1)(.*)(/p1)')
+        par2 = re.compile(r'(p2)(.*)(/p2)')
+        par3 = re.compile(r'(p3)(.*)(/p3)')
+        par4 = re.compile(r'(p4)(.*)(/p4)')
+        par5 = re.compile(r'(p5)(.*)(/p5)')
+        par6 = re.compile(r'(p6)(.*)(/p6)')
+        l = [par1, par2, par3, par4, par5, par6]
+        paragraphs = [None, None, None, None, None, None]
+        for i in range(0,6):
+            x = l[i].search(text)
+            if x is None:
+                break
+            paragraphs[i] = f"""{x.group(2)}"""
+            if type(paragraphs[i]) != str:
+                break        
+        #post = db.session.query(Post).filter_by(id=id).first()                
+        post.title = title
+        post.paragraph_1 = paragraphs[0]
+        post.paragraph_2 = paragraphs[1]
+        post.paragraph_3 = paragraphs[2]
+        post.paragraph_4 = paragraphs[3]
+        post.paragraph_5 = paragraphs[4]
+        post.paragraph_6 = paragraphs[5]
+        post.date = str(datetime.now(poland))[:-13]
+        db.session.commit()
+        return f"Post with title '{{ post.title }}'' was updated"
+        
+
 
 @app.route('/delete_post', methods=['GET','POST'])
 @login_required
