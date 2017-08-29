@@ -15,7 +15,7 @@
     {% for post in posts %}
     <tr>
     <td>{{ post.id }}</td> <td>{{ post.title }}</td> <td>{{ post.paragraph_1[:50] }}</td>
-    <td><a href="#"><button class="btn btn-default" value="Edit">Edit</button></a></td>
+    <td><a href="/edit_post/?id={{ post.id }}"><button class="btn btn-default" value="Edit">Edit</button></a></td>
     <td><a href="/delete_post?id={{ post.id }}"><button class="btn btn-default" value="Delete">Delete</button></a></td>
     </tr>
     {% endfor %}
