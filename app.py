@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash, g
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 import os
 from functools import wraps
 from datetime import datetime
@@ -9,11 +10,14 @@ from credentials import user_log, user_pass
 
 
 app = Flask(__name__)
+bcrypt = Bcrypt(app)
 
 #config
 app.config.from_object(os.environ['APP_SETTINGS'])
 
 db = SQLAlchemy(app)
+
+
 
 #Setting a timezone
 poland = timezone('Europe/Warsaw')
@@ -65,13 +69,23 @@ def welcome():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != user_log or request.form['password'] != user_pass:
+        username = request.form['username']
+        password = request.form['password']
+        user = db.session.query(User).filter_by(id=1).first()
+        if username != 'Zibi242424' or bcrypt.check_password_hash(user.password, password) is False:
             error = 'Invalid credentials. Please try again.'
         else:
             session['logged_in'] = True
             flash('You were just logged in!')
             return redirect(url_for('home'))
     return render_template('login.html', error=error)
+"""if request.form['username'] != user_log or request.form['password'] != user_pass:
+error = 'Invalid credentials. Please try again.'
+else:
+session['logged_in'] = True
+flash('You were just logged in!')
+return redirect(url_for('home'))"""
+#return render_template('login.html', error=error)
 
 @app.route('/logout')
 @login_required
