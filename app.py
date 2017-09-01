@@ -308,7 +308,7 @@ def edit_post():
         post.paragraph_6 = paragraphs[5]
         post.date = str(datetime.now(poland))[:-13]
         db.session.commit()
-        return f"Post with title '{{ post.title }}'' was updated"
+        return f"Post with title '{ post.title }' was updated"
         
 
 
