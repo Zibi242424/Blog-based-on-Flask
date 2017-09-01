@@ -215,8 +215,7 @@ def edit_review():
         paragraphs = [None, None, None, None, None, None]
         for i in range(0,6):
             x = l[i].search(review_v)
-            if x is None:
-                break
+            
             paragraphs[i] = f"""{x.group(2)}"""
             if type(paragraphs[i]) != str:
                 break
@@ -296,8 +295,7 @@ def edit_post():
         paragraphs = [None, None, None, None, None, None]
         for i in range(0,6):
             x = l[i].search(text)
-            if x is None:
-                break
+            
             paragraphs[i] = f"""{x.group(2)}"""
             if type(paragraphs[i]) != str:
                 break        
