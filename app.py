@@ -273,6 +273,7 @@ def edit_post_menu():
 @login_required
 def edit_post():
     if request.method == 'GET':
+        global id
         id = int(request.args.get('id', None))
         global post
         post = db.session.query(Post).filter_by(id=id).first()
@@ -298,7 +299,7 @@ def edit_post():
             paragraphs[i] = f"""{x.group(2)}"""
             if type(paragraphs[i]) != str:
                 break        
-        #post = db.session.query(Post).filter_by(id=id).first()                
+        post = db.session.query(Post).filter_by(id=id).first()                
         post.title = title
         post.paragraph_1 = paragraphs[0]
         post.paragraph_2 = paragraphs[1]
