@@ -189,6 +189,7 @@ def edit_review_menu():
 @login_required
 def edit_review():
     if request.method == 'GET':
+        global id
         id = int(request.args.get('id', None))
         global review
         review = db.session.query(Review).filter_by(id=id).first()
@@ -220,6 +221,7 @@ def edit_review():
             if type(paragraphs[i]) != str:
                 break
         lowercase = re.compile(r' ')
+        review = db.session.query(Review).filter_by(id=id).first()
         review.artist = artist
         review.album = album
         review.header = header
