@@ -105,7 +105,7 @@ class Post(db.Model):
 
 class User(db.Model):
 
-    __tablename__ = "users"
+    __tablename__ = "user"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
@@ -113,7 +113,7 @@ class User(db.Model):
 
     def __init__(self, name, password):
         self.name = name
-        self.password = bcrypt.generate_password_hash(password)
+        self.password = bcrypt.generate_password_hash(password).decode('utf-8')
 
     def __repr__(self):
         return '<name {}'.format(self.name)
