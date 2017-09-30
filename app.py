@@ -79,13 +79,7 @@ def login():
             flash('You were just logged in!')
             return redirect(url_for('home'))
     return render_template('login.html', error=error)
-"""if request.form['username'] != user_log or request.form['password'] != user_pass:
-error = 'Invalid credentials. Please try again.'
-else:
-session['logged_in'] = True
-flash('You were just logged in!')
-return redirect(url_for('home'))"""
-#return render_template('login.html', error=error)
+
 
 @app.route('/logout')
 @login_required
@@ -364,7 +358,7 @@ def music_menu():
     css = url_for('static', filename='bootstrap.min.css')      
     date = str(datetime.now(poland))[:-22]
     page = int(request.args.get('page', 1))
-    reviews = db.session.query(Review).all()[::-1]
+    reviews = db.session.query(Review).order_by("id")[::-1]
     x = int(len(reviews)/9) + 1
     buttons = []
     for i in range(0,x):
