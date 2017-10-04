@@ -342,6 +342,11 @@ def deleting_post():
         return redirect(url_for('edit_post_menu'))
 ###############################__END_OF_ADMIN_REVIEW__################################
 
+@app.route('/img')
+def show_image():
+    name = request.args.get('name',None)
+    img = url_for('static', filename=f"{name}.jpg")
+    return render_template('show_image.html', img=img)
 
 @app.route('/music_menu')
 def music_menu():
